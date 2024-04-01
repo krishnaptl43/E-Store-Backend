@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt')
 class Bcrypt {
-    encrypt(data){
-        const { saltRound , str} = data
-      let encryptData = bcrypt.hash(str,saltRound)
+
+   async encrypt(data){
+        const { saltRound , password} = data
+      let encryptData = bcrypt.hash(password,saltRound)
       return encryptData
     }
 
@@ -10,3 +11,5 @@ class Bcrypt {
       const match = bcrypt.compare()
     }
 }
+
+module.exports = new Bcrypt;
