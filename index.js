@@ -11,7 +11,7 @@ server.use(express.json())
 
 
 server.get('/', (req, res) => {
-    res.send("server is running")
+    res.json("server is running")
 })
 
 server.use('/api', apiRouter)
