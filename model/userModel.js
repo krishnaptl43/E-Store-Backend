@@ -28,6 +28,10 @@ const schema = new Schema({
     },
     orders : {
         type : Schema.Types.Array
+    },
+    role : {
+        type : String,
+        default : "user"
     }
 },{timestamps : true})
 

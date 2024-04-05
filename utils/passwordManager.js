@@ -2,13 +2,15 @@ const bcrypt = require('bcrypt')
 class Bcrypt {
 
    async encrypt(data){
-        const { saltRound , password} = data
-      let encryptData = bcrypt.hash(password,saltRound)
+        const { saltRound , pass} = data
+      let encryptData = await bcrypt.hash(pass,saltRound)
       return encryptData
     }
 
-    verify(){
-      const match = bcrypt.compare()
+   async verify(data){
+      const {password,hash} = data
+      const match = await bcrypt.compare(password,hash)
+      return match
     }
 }
 
