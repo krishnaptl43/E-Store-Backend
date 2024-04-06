@@ -1,4 +1,5 @@
-const ApiResponse = require("../ApiResponse/apiResponse")
+const ApiResponse = require("../ApiResponse/apiResponse");
+const { generateToken } = require("../config/tokenManager");
 const userModel = require("../model/userModel");
 const { encrypt, verify } = require("../utils/passwordManager");
 require('dotenv').config()
@@ -57,6 +58,8 @@ async function loginUser(req, res) {
       let obj = user.toObject()
       delete obj.password
       delete obj.__v
+      let token = await generateToken({id:obj._id,name:obj.user_name})
+      obj.token = token
       res.json(new ApiResponse(true, obj, "user login successfully"))
 
    } catch (error) {
