@@ -11,10 +11,6 @@ async function registerUser(req, res) {
    let hashPassword;
    try {
 
-      // if(!email || !password || !user_name || !mobile ){
-      //    res.json(new ApiResponse(false,null, "register failed please enter require feilds"))
-      // }
-
       hashPassword = await encrypt({  pass : req.body.password, saltRound })
 
       let data = await userModel.create({ user_name, email, password: hashPassword, mobile })
@@ -45,7 +41,7 @@ async function loginUser(req, res) {
          res.json(new ApiResponse(false, null, "please enter password"))
       }
 
-      let user = await userModel.findOne({ email })
+      let user = await userModel.findOne({ email,role:"user" })
 
       if (!user) {
          res.json(new ApiResponse(false, null, "user not found"))

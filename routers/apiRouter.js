@@ -1,14 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const v1Router  = require("./v1Router")
-const adminRouter = require('./adminRouter/adminRouter')
+const v2Router = require('./v2Router')
+const { registerAdmin, loginAdmin } = require('../controller/adminController')
 
 router.use('/v1',v1Router)
-router.use("/admin/addcate",adminRouter)
-// router.use('/v2',(req,res,next)=>{
-//     next()
-// })
+router.post("/admin/register",registerAdmin)
+router.post("/admin/login",loginAdmin)
 
-// router.use("/v2",v2Router)
+router.use('/v2',(req,res,next)=>{
+    next()
+})
+
+router.use("/v2",v2Router)
 
 module.exports = router;
