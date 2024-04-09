@@ -59,7 +59,7 @@ async function registerAdmin(req, res) {
        let obj = user.toObject()
        delete obj.password
        delete obj.__v
-       let token = await generateToken({id:obj._id,name:obj.user_name,role:obj.role})
+       let token = generateToken({id:obj._id,name:obj.user_name,role:obj.role})
        obj.token = token
        res.json(new ApiResponse(true, obj, "admin login successfully"))
  

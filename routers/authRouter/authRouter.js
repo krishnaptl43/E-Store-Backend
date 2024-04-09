@@ -1,10 +1,9 @@
-const express = require('express');
-const { addCategory } = require('../../controller/categoryController');
-const { verifyToken } = require('../../config/tokenManager');
-const ApiResponse = require('../../ApiResponse/apiResponse');
+const express = require('express')
+const ApiResponse = require('../../ApiResponse/apiResponse')
+const { verifyToken } = require('../../config/tokenManager')
 const router = express.Router()
 
-router.use("/",async (req,res,next)=>{
+router.use('/',async (req,res,next)=>{
     let response =  await verifyToken(req)
     if(response.status){
         if(req.data.role === 'admin'){
@@ -17,7 +16,6 @@ router.use("/",async (req,res,next)=>{
     }
      
  })
-router.post("/addcategory",addCategory)
 
 
 module.exports = router;
