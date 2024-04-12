@@ -1,5 +1,5 @@
 const express = require('express');
-const { addCategory } = require('../../controller/categoryController');
+const { addCategory, getAllCategories } = require('../../controller/categoryController');
 const { verifyToken } = require('../../config/tokenManager');
 const ApiResponse = require('../../ApiResponse/apiResponse');
 const router = express.Router()
@@ -17,7 +17,9 @@ router.use("/",async (req,res,next)=>{
     }
      
  })
+
 router.post("/addcategory",addCategory)
+router.get("/get_all_category",getAllCategories)
 
 
 module.exports = router;

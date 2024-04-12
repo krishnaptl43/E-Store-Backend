@@ -3,15 +3,17 @@ const {Schema,model} = require('mongoose')
 const schema = new Schema({
     cate_name : {
         type : String,
-        unique : true
+        unique : true,
+        required : [true,"required !"]
     },
     isDeleted : {
         type : Boolean,
         default : false
     },
-    adder : {
+    last_modify : {
         type : Schema.Types.ObjectId,
-        ref: "user"
+        ref: 'User',
+        require : [true,"required"]
     }
 })
 
