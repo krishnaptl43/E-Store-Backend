@@ -9,7 +9,7 @@ const schema = new Schema({
         type : Boolean,
         default : false
     },
-    adder : {
+    last_modify : {
         type : Schema.Types.ObjectId,
         ref: "user"
     }

@@ -30,4 +30,16 @@ async function getAllCategories(req,res){
     }
  }
 
-module.exports = {addCategory,getAllCategories}
+ async function delCategory(req,res){
+     const {id} = req.params
+     try{
+         let isDel = await categoryModel.findByIdAndUpdate(id,{isDeleted:true})
+         if(isDel !== null){
+            res.json(new ApiResponse(true,null,"category deleted successfully"))
+         }
+     }catch(err){
+        res.json(new ApiResponse(false,null,err.message))
+     }
+ }
+
+module.exports = {addCategory,getAllCategories,delCategory}
