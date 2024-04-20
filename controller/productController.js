@@ -1,11 +1,13 @@
 const ApiResponse = require("../ApiResponse/apiResponse")
 const productModel = require("../model/productModel")
+const path = require('path')
+const fs = require('fs')
 
 async function addProduct(req,res) {
     const { product_name, price, brand, category, stock, description, discountPercentage } = req.body
-    console.log(req.files);
     try {
-        let respsData = await productModel.create({ product_name, price, brand, category, stock,thumbnail:req.files[0].buffer, description, discountPercentage, adder: req.data.id })
+        const url = req.protocol + '://' + req.get("host");
+        let respsData = await productModel.create({ product_name, price, brand, category, stock,thumbnail:url+"/uploads/"+req.files[0].originalname, description, discountPercentage, adder: req.data.id })
         if (!respsData) {
             res.json(new ApiResponse(false, null, "product not added"))
         } else {

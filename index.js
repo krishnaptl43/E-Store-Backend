@@ -12,7 +12,7 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({extended:false}))
 
-server.use(express.static(path.join(__dirname,"uploads")))
+server.use("/uploads",express.static("uploads/"))
 
 server.get('/', (req, res) => {
     res.json("server is running")
